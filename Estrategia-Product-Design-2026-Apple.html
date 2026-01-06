@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Product Design 2026 - CONTPAQi®</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --contpaqi-blue: #0066cc;
+            --contpaqi-dark-blue: #004d99;
+            --contpaqi-teal: #00a8a8;
+            --contpaqi-green: #00b894;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --border-color: #d2d2d7;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 80px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: var(--spacing-sm) var(--spacing-lg);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            padding: var(--spacing-xs) 0;
+        }
+
+        nav a:hover {
+            color: var(--contpaqi-blue);
+        }
+
+        nav a.active {
+            color: var(--contpaqi-blue);
+            font-weight: 500;
+        }
+
+        /* Header */
+        header {
+            margin-top: 60px;
+            padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-2xl);
+            text-align: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header h1 {
+            font-size: 56px;
+            line-height: 1.07143;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        header .subtitle {
+            font-size: 28px;
+            line-height: 1.14286;
+            font-weight: 400;
+            letter-spacing: 0.007em;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        header .meta {
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        /* Sections */
+        section {
+            margin: var(--spacing-3xl) 0;
+            scroll-margin-top: 80px;
+        }
+
+        section h2 {
+            font-size: 40px;
+            line-height: 1.1;
+            font-weight: 600;
+            letter-spacing: 0em;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+
+        section h3 {
+            font-size: 28px;
+            line-height: 1.14286;
+            font-weight: 600;
+            letter-spacing: 0.007em;
+            margin-bottom: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            color: var(--text-primary);
+        }
+
+        section h4 {
+            font-size: 21px;
+            line-height: 1.19048;
+            font-weight: 600;
+            letter-spacing: 0.011em;
+            margin-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+
+        section p {
+            font-size: 17px;
+            line-height: 1.47059;
+            letter-spacing: -0.022em;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        section ul, section ol {
+            margin-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        section li {
+            font-size: 17px;
+            line-height: 1.47059;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-primary);
+            border-radius: 18px;
+            padding: var(--spacing-lg);
+            border: 1px solid var(--border-color);
+            margin-bottom: var(--spacing-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: var(--contpaqi-blue);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-lg) 0;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        table th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: var(--spacing-md);
+            text-align: left;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        table td {
+            padding: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        table tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: var(--spacing-xs);
+        }
+
+        .badge-critical {
+            background: #ff3b30;
+            color: white;
+        }
+
+        .badge-high {
+            background: #ff9500;
+            color: white;
+        }
+
+        .badge-success {
+            background: var(--contpaqi-green);
+            color: white;
+        }
+
+        /* Highlight boxes */
+        .highlight {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--contpaqi-blue);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin: var(--spacing-md) 0;
+        }
+
+        .highlight h4 {
+            margin-top: 0;
+            color: var(--contpaqi-blue);
+        }
+
+        /* Roadmap sections */
+        .roadmap-section {
+            background: var(--bg-secondary);
+            border-radius: 18px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .roadmap-section h3 {
+            margin-top: 0;
+            color: var(--contpaqi-dark-blue);
+        }
+
+        /* Process flow */
+        .process-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            padding: var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .process-step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--contpaqi-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 20px;
+            margin: 0 auto var(--spacing-sm);
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--contpaqi-blue);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            margin-top: var(--spacing-3xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 40px;
+            }
+
+            header .subtitle {
+                font-size: 24px;
+            }
+
+            section h2 {
+                font-size: 32px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+            }
+
+            .process-flow {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section dividers */
+        .section-divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: var(--spacing-3xl) 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#resumen">Resumen</a></li>
+            <li><a href="#objetivos">Objetivos</a></li>
+            <li><a href="#organizacion">Organización</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#procesos">Procesos</a></li>
+            <li><a href="#metricas">Métricas</a></li>
+            <li><a href="#design-system">Design System</a></li>
+            <li><a href="#capacidades">Capacidades</a></li>
+            <li><a href="#roi">ROI</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Estrategia de Product Design 2026</h1>
+        <p class="subtitle">Consolidación y Evolución de UX/UI hacia Product Design</p>
+        <p class="meta">Continuidad de la Estrategia UX/UI 2025 — Dirección de Desarrollo de Producto CONTPAQi®</p>
+    </header>
+
+    <div class="container">
+        <!-- Resumen Ejecutivo -->
+        <section id="resumen">
+            <h2>📋 Resumen Ejecutivo</h2>
+            <p>Esta estrategia propone la <strong>evolución y consolidación</strong> del área de UX/UI hacia un modelo de <strong>Product Design</strong> integral, construyendo sobre los cimientos establecidos durante 2025. El objetivo es transformar el equipo en una función estratégica que impacte directamente en los resultados del negocio, mientras se consolidan los procesos, métricas y entregables ya definidos.</p>
+
+            <div class="card">
+                <h4>Lo Logrado en 2025</h4>
+                <ul>
+                    <li>✅ Proceso UX/UI estructurado (Definición → Ideación → Diseño → Desarrollo → Validación → Monitoreo)</li>
+                    <li>✅ Métricas definidas por área (Investigación, Diseño, Experiencia, Implementación, Satisfacción, Rendimiento)</li>
+                    <li>✅ Entregables documentados por etapa</li>
+                    <li>✅ Identificación de necesidades (Roles, Herramientas, Procesos, Cultura, Capacitación, Research)</li>
+                    <li>✅ Enfoque DesignOps implementado</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Objetivo Principal 2026</h4>
+                <p><strong>Evolucionar de UX/UI hacia Product Design</strong>, consolidando lo establecido y escalando hacia:</p>
+                <ul>
+                    <li><strong>Estrategia de Producto</strong>: Participación activa en definición de roadmap y decisiones estratégicas</li>
+                    <li><strong>Impacto Medible</strong>: Conexión directa entre diseño y métricas de negocio</li>
+                    <li><strong>Escalabilidad</strong>: Sistemas y procesos que soporten crecimiento</li>
+                    <li><strong>Product Thinking</strong>: Decisiones basadas en datos, research y objetivos de negocio</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Objetivos Estratégicos -->
+        <section id="objetivos">
+            <h2>🎯 Objetivos Estratégicos 2026</h2>
+
+            <div class="card">
+                <h4>1. Consolidación de Procesos y Métricas (Q1-Q2)</h4>
+                <ul>
+                    <li>Refinar y optimizar el proceso "to be" establecido en 2025</li>
+                    <li>Completar la implementación de métricas definidas</li>
+                    <li>Establecer períodos de revisión y ajuste continuo</li>
+                    <li>Documentar subprocesos y casos de uso específicos</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>2. Evolución hacia Product Design (Q2-Q3)</h4>
+                <ul>
+                    <li>Expandir habilidades del equipo hacia product thinking</li>
+                    <li>Desarrollar competencias en data analysis y business strategy</li>
+                    <li>Participar activamente en roadmap y planning de producto</li>
+                    <li>Conectar diseño con métricas de negocio (revenue, churn, adoption)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>3. Escalamiento de Capacidades (Q3-Q4)</h4>
+                <ul>
+                    <li>Implementar y evolucionar design system</li>
+                    <li>Establecer Research Operations (ResearchOps)</li>
+                    <li>Desarrollar capacidades de prototipado avanzado y testing</li>
+                    <li>Crear repositorio de insights y conocimiento</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>4. Cultura y Medición de Impacto (Todo el año)</h4>
+                <ul>
+                    <li>Promover design thinking en toda la organización</li>
+                    <li>Establecer comunidad de práctica interna</li>
+                    <li>Medir y comunicar ROI del diseño</li>
+                    <li>Documentar casos de éxito</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Evolución Organizacional -->
+        <section id="organizacion">
+            <h2>🏗️ Evolución Organizacional</h2>
+
+            <div class="card">
+                <h4>Estado Actual del Equipo (2025)</h4>
+                <ul>
+                    <li><strong>1 Líder UX/UI</strong> (Liderazgo del equipo)</li>
+                    <li><strong>2 Senior UX/UI Designers</strong></li>
+                    <li><strong>2 Middle UX/UI Designers</strong></li>
+                    <li><strong>1 UX Researcher</strong></li>
+                    <li><strong>Total: 6 personas</strong></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Estructura Objetivo (2026)</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rol</th>
+                            <th>Cantidad</th>
+                            <th>Origen</th>
+                            <th>Responsabilidades Clave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gerente / Head of Product Design</strong></td>
+                            <td>1</td>
+                            <td>Promoción del Líder actual</td>
+                            <td>Liderazgo estratégico, visión de diseño, relación con stakeholders ejecutivos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senior Product Designer - Design System Lead</strong></td>
+                            <td>1</td>
+                            <td>Promoción de 1 Senior actual</td>
+                            <td>Ownership completo del Design System, governance, integración MCP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senior Product Designers</strong></td>
+                            <td>2</td>
+                            <td>1 actual + 1 nuevo</td>
+                            <td>Ownership de productos/features, product thinking, mentoring</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Product Designers</strong></td>
+                            <td>2</td>
+                            <td>2 Middle (upskilling)</td>
+                            <td>Diseño de features, prototipado, handoff, uso del DS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>UX Researcher</strong></td>
+                            <td>1</td>
+                            <td>Rol existente</td>
+                            <td>Research continuo, ResearchOps, insights, soporte al equipo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td><strong>7 personas</strong></td>
+                            <td>6 actuales + 1 nuevo</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Roadmap -->
+        <section id="roadmap">
+            <h2>📊 Roadmap de Implementación 2026</h2>
+
+            <div class="roadmap-section">
+                <h3>Q1 2026: Consolidación, Design System e Implementación</h3>
+                <h4>Objetivos</h4>
+                <ul>
+                    <li>Consolidar procesos establecidos en 2025</li>
+                    <li>Implementar Design System en productos (DS ya en creación)</li>
+                    <li>Capacitación exhaustiva en productos CONTPAQi <span class="badge badge-critical">Crítica</span></li>
+                    <li>Refinar métricas y establecer períodos de revisión</li>
+                    <li>Completar Jobs to be Done framework</li>
+                </ul>
+                <h4>Actividades Clave</h4>
+                <ul>
+                    <li><strong>Implementación del Design System</strong> <span class="badge badge-high">Prioridad Alta</span></li>
+                    <li><strong>Capacitación Exhaustiva en Productos CONTPAQi</strong> <span class="badge badge-critical">Prioridad Crítica</span></li>
+                    <li>Refinamiento de Procesos</li>
+                    <li>Jobs to be Done Framework</li>
+                    <li>Métricas y Períodos de Revisión</li>
+                    <li>Auditoría y Análisis</li>
+                </ul>
+            </div>
+
+            <div class="roadmap-section">
+                <h3>Q2 2026: Design System Escalamiento y ResearchOps</h3>
+                <h4>Objetivos</h4>
+                <ul>
+                    <li>Escalar implementación del Design System</li>
+                    <li>Establecer Research Operations</li>
+                    <li>Mejorar herramientas y stack tecnológico</li>
+                    <li>Continuar capacitación productos CONTPAQi (intermedio)</li>
+                    <li>Iniciar capacitación en product thinking</li>
+                </ul>
+            </div>
+
+            <div class="roadmap-section">
+                <h3>Q3 2026: Product Thinking y Escalamiento</h3>
+                <h4>Objetivos</h4>
+                <ul>
+                    <li>Desarrollar product thinking en el equipo</li>
+                    <li>Participar activamente en roadmap de producto</li>
+                    <li>Escalar impacto del diseño</li>
+                    <li>Establecer cultura de diseño</li>
+                </ul>
+            </div>
+
+            <div class="roadmap-section">
+                <h3>Q4 2026: Medición, Optimización y Planificación 2027</h3>
+                <h4>Objetivos</h4>
+                <ul>
+                    <li>Medir impacto del diseño en negocio</li>
+                    <li>Optimizar procesos y herramientas</li>
+                    <li>Evolucionar design system</li>
+                    <li>Planificar estrategia 2027</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Procesos -->
+        <section id="procesos">
+            <h2>🔄 Procesos: Evolución del Proceso "To Be" 2025</h2>
+            <p>El proceso base establecido en 2025 evoluciona hacia Product Design:</p>
+
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="process-step-number">1</div>
+                    <h4>Discovery y Problem Space</h4>
+                    <p style="font-size: 14px;">Business context, market analysis, data analysis</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">2</div>
+                    <h4>Ideación con Product Thinking</h4>
+                    <p style="font-size: 14px;">Hypothesis-driven, priorización, business validation</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">3</div>
+                    <h4>Diseño y Prototipado</h4>
+                    <p style="font-size: 14px;">Testing continuo, data-informed, accessibility</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">4</div>
+                    <h4>Desarrollo</h4>
+                    <p style="font-size: 14px;">Design-Engineering sync, Design QA, component library</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">5</div>
+                    <h4>Validación y Lanzamiento</h4>
+                    <p style="font-size: 14px;">Pre-launch metrics, launch plan, success criteria</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">6</div>
+                    <h4>Monitoreo y Mejora</h4>
+                    <p style="font-size: 14px;">Business metrics, impact analysis, iteration planning</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Métricas -->
+        <section id="metricas">
+            <h2>📈 Métricas: Evolución y Consolidación</h2>
+
+            <div class="card">
+                <h4>Métricas de Eficiencia</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">30-40%</div>
+                        <div class="stat-label">Reducción tiempo diseño</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">50%</div>
+                        <div class="stat-label">Reducción rework</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">60%</div>
+                        <div class="stat-label">Aumento velocidad iteración</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Métricas de Calidad</h4>
+                <ul>
+                    <li>25% mejora en métricas de usabilidad</li>
+                    <li>40% reducción en bugs de UI</li>
+                    <li>30% mejora en satisfacción del usuario</li>
+                    <li>50% mejora en consistencia visual</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Nuevas Métricas de Product Design (2026)</h4>
+                <h4>Product Impact Metrics</h4>
+                <ul>
+                    <li>Feature Adoption Rate</li>
+                    <li>Time to Value</li>
+                    <li>Engagement Metrics</li>
+                    <li>Conversion Impact</li>
+                </ul>
+                <h4>Business Impact Metrics</h4>
+                <ul>
+                    <li>Revenue Impact</li>
+                    <li>Churn Reduction</li>
+                    <li>Support Ticket Reduction</li>
+                    <li>Onboarding Efficiency</li>
+                </ul>
+                <h4>Design System Metrics</h4>
+                <ul>
+                    <li>Component Reuse Rate</li>
+                    <li>Design System Adoption</li>
+                    <li>Design Debt</li>
+                    <li>Design System Velocity</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Design System -->
+        <section id="design-system">
+            <h2>🛠️ Design System: Implementación y Evolución</h2>
+
+            <div class="highlight">
+                <h4>Estado Actual</h4>
+                <ul>
+                    <li>✅ Design System en creación: Componentes base en desarrollo</li>
+                    <li>✅ Librería para desarrolladores: Existente y alimentada por MCP</li>
+                    <li>✅ Integración MCP: El Design System se sincroniza automáticamente con la librería de componentes para devs</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Fase 1: Implementación y Fundación (Q1 2026)</h4>
+                <ul>
+                    <li>Finalización de Design Tokens</li>
+                    <li>Finalización de Componentes Base</li>
+                    <li>Implementación en productos piloto</li>
+                    <li>Training del equipo en uso del DS</li>
+                    <li>Establecer governance y proceso de contribución</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Fase 2: Escalamiento (Q2-Q3)</h4>
+                <ul>
+                    <li>Componentes Complejos</li>
+                    <li>Patrones de diseño</li>
+                    <li>Expansión a más productos</li>
+                    <li>Evolución basada en feedback</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Fase 3: Madurez (Q4)</h4>
+                <ul>
+                    <li>Mejoras basadas en feedback</li>
+                    <li>Nuevos componentes según necesidades</li>
+                    <li>Versioning y release management</li>
+                    <li>Documentación completa</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Desarrollo de Capacidades -->
+        <section id="capacidades">
+            <h2>🎓 Desarrollo de Capacidades: Plan de Upskilling</h2>
+
+            <div class="card">
+                <h4>1. Conocimiento de Productos CONTPAQi <span class="badge badge-critical">Prioridad Crítica - Q1</span></h4>
+                <p><strong>Objetivo:</strong> Diseñadores con conocimiento integral de productos para Product Design independiente</p>
+                <h4>Q1: Nivel Básico</h4>
+                <ul>
+                    <li>Mapeo completo de productos CONTPAQi y sus funcionalidades core</li>
+                    <li>Sesiones de capacitación estructuradas por producto</li>
+                    <li>Hands-on: uso práctico de cada producto</li>
+                    <li>Sesiones con Product Owners y expertos de producto</li>
+                    <li>Evaluación y certificación básica de conocimiento</li>
+                </ul>
+                <h4>Q2: Nivel Intermedio</h4>
+                <ul>
+                    <li>Profundización en funcionalidades avanzadas</li>
+                    <li>Casos de uso complejos y escenarios edge</li>
+                    <li>Integración entre productos CONTPAQi</li>
+                </ul>
+                <h4>Q3-Q4: Nivel Avanzado</h4>
+                <ul>
+                    <li>Casos de uso especializados</li>
+                    <li>Actualización continua con nuevas features</li>
+                    <li>Contribución a documentación de productos</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>2. Product Thinking <span class="badge badge-high">Prioridad Alta</span></h4>
+                <ul>
+                    <li>Product Thinking Bootcamp (2 semanas intensivas)</li>
+                    <li>Shadowing de Product Managers</li>
+                    <li>Participación en quarterly planning</li>
+                    <li>Workshops de business acumen (mensual)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>3. Data Analysis <span class="badge badge-high">Prioridad Alta</span></h4>
+                <ul>
+                    <li>Curso de Data Analysis para Designers (4 semanas)</li>
+                    <li>Hands-on con herramientas de analytics</li>
+                    <li>Análisis de métricas de producto existentes</li>
+                    <li>Creación de dashboards de métricas</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ROI -->
+        <section id="roi">
+            <h2>💰 ROI y Justificación: Inversión y Retorno</h2>
+
+            <div class="card">
+                <h4>Retorno Esperado</h4>
+                <h4>Eficiencia</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">30-40%</div>
+                        <div class="stat-label">Reducción tiempo diseño</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">50%</div>
+                        <div class="stat-label">Reducción rework</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">60%</div>
+                        <div class="stat-label">Aumento velocidad iteración</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">Reducción tiempo handoff</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Impacto en Negocio</h4>
+                <ul>
+                    <li>15-20% mejora en conversión</li>
+                    <li>25% reducción en churn</li>
+                    <li>30% mejora en feature adoption</li>
+                    <li>20% reducción en tickets de soporte</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h4>Métricas de Éxito del Programa</h4>
+                <h4>6 Meses (Q2 2026):</h4>
+                <ul>
+                    <li>✅ Procesos refinados y documentados</li>
+                    <li>✅ Design system v1.0 en uso</li>
+                    <li>✅ Métricas base establecidas y tracking operativo</li>
+                    <li>✅ Equipo iniciando capacitación en product thinking</li>
+                    <li>✅ ResearchOps establecido</li>
+                </ul>
+                <h4>12 Meses (Q4 2026):</h4>
+                <ul>
+                    <li>✅ Impacto medible en métricas de producto</li>
+                    <li>✅ 3+ casos de éxito documentados con ROI</li>
+                    <li>✅ ROI positivo demostrado</li>
+                    <li>✅ Cultura de diseño establecida</li>
+                    <li>✅ Participación activa en roadmap de producto</li>
+                    <li>✅ Design system maduro y adoptado</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Próximos Pasos -->
+        <section id="proximos-pasos">
+            <h2>🚀 Próximos Pasos Inmediatos: Q1 2026</h2>
+
+            <div class="card">
+                <h4>Semana 1-2: Kickoff y Alineación</h4>
+                <ul>
+                    <li>Reunión de alineación con stakeholders (presentar estrategia 2026)</li>
+                    <li>Presentación de estrategia al equipo UX/UI</li>
+                    <li>Proceso de promoción del Líder a Gerente / Head of Product Design</li>
+                    <li>Proceso de promoción de 1 Senior a Senior Product Designer - Design System Lead</li>
+                    <li>Inicio de proceso de contratación para nuevo Senior Product Designer</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Semana 3-4: Auditoría y Análisis</h4>
+                <ul>
+                    <li>Evaluación de implementación de proceso "to be" vs. "as is"</li>
+                    <li>Análisis de métricas 2025 (baseline)</li>
+                    <li>Inventario de herramientas actuales</li>
+                    <li>Identificación de gaps en roles, procesos, herramientas</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Semana 5-8: Refinamiento, Design System e Implementación</h4>
+                <ul>
+                    <li>Documentación de subprocesos detallados</li>
+                    <li>Mapeo de necesidades a Jobs to be Done</li>
+                    <li>Setup de dashboard de métricas</li>
+                    <li>Implementación del Design System en productos piloto</li>
+                    <li>Inicio de capacitación exhaustiva en productos CONTPAQi (Nivel Básico)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Semana 9-12: Implementación y Consolidación</h4>
+                <ul>
+                    <li>Playbook de procesos refinado publicado</li>
+                    <li>Design System implementado y en uso activo</li>
+                    <li>Capacitación en productos CONTPAQi avanzando</li>
+                    <li>Evaluación y certificación básica de conocimiento de productos</li>
+                    <li>ResearchOps setup iniciado</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p><strong>Estrategia de Product Design 2026</strong></p>
+        <p>Dirección de Desarrollo de Producto CONTPAQi®</p>
+        <p>Documento creado: Enero 2026 | Versión: 2.0 | Próxima revisión: Trimestral</p>
+        <p style="margin-top: var(--spacing-md);">Estrategia realizada por Eduardo Lobato — Líder UX/UI</p>
+    </footer>
+
+    <script>
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a');
+
+        function highlightNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNav);
+        highlightNav();
+    </script>
+</body>
+</html>
+
